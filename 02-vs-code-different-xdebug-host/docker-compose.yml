@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  app:
+    build:
+      # 次の context, dockerfile とすると、 build 後の up で次のエラーとなる
+      # どうやら、ビルドコンテクストが有ると発生するらしい。
+      # docker-php53-xdebug-app-1  | AH00526: Syntax error on line 3 of /etc/apache2/apache2.conf:
+      # docker-php53-xdebug-app-1  | Invalid Mutex directory in argument file:/var/lock/apache2
+      context: .
+      #dockerfile: docker/app/dockerfile/Dockerfile
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "80:80"
