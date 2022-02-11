@@ -6,16 +6,8 @@ services:
       # どうやら、ビルドコンテクストが有ると発生するらしい。
       # docker-php53-xdebug-app-1  | AH00526: Syntax error on line 3 of /etc/apache2/apache2.conf:
       # docker-php53-xdebug-app-1  | Invalid Mutex directory in argument file:/var/lock/apache2
-      #context: .
+      context: .
       #dockerfile: docker/app/dockerfile/Dockerfile
-      context: docker/app/dockerfile
-      dockerfile: Dockerfile
-    volumes:
-      - ./.vscode:/var/www/.vscode
-      - ./src:/var/www/html
-      - ./docker/app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
-      #- ./docker/app/xdebug.ini:/usr/local/lib/php.ini
-      # 開発中に設定を変更可能にする目的
-      - ./docker/app/xdebug.ini:/var/www/conf.d/xdebug.ini
+      dockerfile: docker/app/Dockerfile
     ports:
       - "80:80"
